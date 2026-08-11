@@ -1,0 +1,18 @@
+services:
+
+  api:
+    build: .
+    container_name: student-dropout-api
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  streamlit:
+    build: .
+    container_name: student-dropout-streamlit
+    command: streamlit run app/streamlit_app.py --server.address=0.0.0.0 --server.port=8501
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
+    restart: unless-stopped
