@@ -4,6 +4,7 @@ import requests
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import os
 
 def validate_inputs(data):
 
@@ -165,8 +166,10 @@ if page == "📊 Single Prediction":
 
     st.title("📊 Student Information")
 
-    API_URL ="http://api:8000/predict"
-
+    API_URL = os.getenv(
+    "API_URL",
+    "http://api:8000/predict"
+)
     # ---------------- Personal ---------------- #
 
     st.header("👤 Personal Information")
